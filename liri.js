@@ -2,23 +2,12 @@
    var service = process.argv[2];
    var param = process.argv[3]; 
 
-   var spotify = require("node-spotify-api");
+   var liri_function = require("./liri_function.js");
    
    // name of the srvice liri can do 
    var liriService =["my-tweets","spotify-this-song","movie-this","do-what-it-says"];
 
-   var TweetsFunction = function(){
-      console.log("Here are your last 20 tweets:");
-   }
-   var SpotifyFunction = function(){
-      console.log("Spotify Search Results:");
-   }
-   var MovieFunction = function(){
-      console.log("OMDB Search Results:");
-   }
-   var FromFileFunction = function(){
-
-   }
+   
 
    console.log("Input: ");
    console.log("Service: " + service);
@@ -30,18 +19,18 @@
 
 		// todo 
 		if(service == "my-tweets"){
-         TweetsFunction();
+         liri_function.TweetsFunction();
       }
       else if(service == "spotify-this-song"){
-         SpotifyFunction();
+         liri_function.SpotifyFunction();
 
       }
       else if(service == "movie-this"){
-         MovieFunction();
+         liri_function.MovieFunction();
 
       }
       else if(service == "do-what-it-says"){
-         FromFileFunction();
+         liri_function.FromFileFunction();
       }
       
    }
