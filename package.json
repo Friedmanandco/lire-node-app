@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Friedmanandco/lire-node-app#readme",
   "dependencies": {
-    "node-spotify-api": "^1.0.6"
+    "node-spotify-api": "^1.0.7",
+    "twitter": "^1.7.1"
   }
 }

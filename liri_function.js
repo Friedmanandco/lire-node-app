@@ -1,20 +1,81 @@
-var spotify = require("node-spotify-api");
-   
-exports.TweetsFunction = function(){
-   console.log("tweets");
-   
-}
-exports.SpotifyFunction = function(){
-   console.log("Spotify Search Results:");
+// node
+var Spotify = require("node-spotify-api");
+var Twitter = require("twitter");
+var fs = require("fs");
+var request = require("request");
+// external files 
+var keys = require("./key.js");
+var liriFunction = require("./liri_function.js");
+
+var twitterName = "gcode4life1";
+var twitterCount = 20;
+
+var twitterNpm = keys.twitterKeys;
+
+var client = new Twitter(twitterNpm);
 
 
-   //spotify.something
-}
-exports.MovieFunction = function(){
+  exports.TweetsFunction = function(service, param){
+
+  //build query url..
+  var queryUrl = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name="+twitterName+"&count="+twitterCount;
+  
+  // Get the data from the twitter api
+    client.get( queryUrl,  function(error, tweet, response) {
+    // if(error)throw error;
+     console.log(tweet);
+  
+    });
+
+ }
+
+  exports.SpotifyFunction = function(service, param){
+
+    //set default song..
+    var song = "uptown funk";
+  
+  //overwrite default song if necessary
+  if(param != "*none provided*"){
+    song = param;
+  }
+
+     var spotify = new SpotifyFunction({
+        id: "4ff52907e9674fa493aaa7f59acf480a",
+        secret: "1d2fb045b5454ff29d2a01dff3668833"
+      });
+ 
+
+      spotify
+      .search({  type: 'artist OR album OR track', query: 'My search query', limit: 20 }, callback) }, function(err, data) {
+        if (err) {
+          return console.log('Error occurred: ' + err);
+        }
+          else { }
+      console.log(data); 
+      };
+
+   }
+
+   // console.log(service);
+
+
+
+  
+
+
+
+
+exports.MovieFunction = function(service, param){
    console.log("OMDB Search Results:");
    var key = "40e9cece";
-   var queryUrl = "http://www.omdbapi.com/?apikey="+key+"&t=mr+nobody";
+   var queryUrl = "http://www.omdbapi.com/?apikey="+key+"&t=Mr+Nobody";
 
+   // if (param != "*none provided*"){
+   //    movie = param;
+   // }
+    
+
+      // queryUrl += movie;
    var request = require('request');
    request(queryUrl, function (error, response, body) {
       if(error != null){
